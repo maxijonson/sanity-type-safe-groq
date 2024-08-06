@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:typegen": "sanity schema extract --path './src/sanity/sanity.schema.json' --enforce-required-fields --workspace=production && sanity typegen generate"
   },
   "dependencies": {
     "@sanity/image-url": "^1.0.2",
