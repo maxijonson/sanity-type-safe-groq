@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sanity:typegen": "sanity schema extract --path './src/sanity/sanity.schema.json' --enforce-required-fields --workspace=production && sanity typegen generate"
+    "sanity:typegen": "sanity schema extract --path './src/sanity/sanity.schema.json' --enforce-required-fields --workspace=production && sanity typegen generate",
+    "sanity:schemas": "npm run sanity:typegen && ts-to-zod src/sanity/sanity.types.ts src/sanity/sanity.schemas.ts && tsx scripts/sanity-schemas.ts"
   },
   "dependencies": {
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.52.4",
+    "groqd": "^0.15.12",
     "next": "14.2.5",
     "next-sanity": "^9.4.3",
     "react": "^18",
@@ -28,6 +30,8 @@
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-to-zod": "^3.10.0",
+    "tsx": "^4.16.5",
     "typescript": "^5"
   }
 }
