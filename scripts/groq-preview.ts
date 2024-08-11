@@ -1,7 +1,8 @@
+import { makeFindPostBySlugQuery } from "@/sanity/queries/post/findPostBySlug";
 import { postDetailsSelection } from "@/sanity/selections/post-details";
+import { pick } from "@/sanity/selections/utils/pick";
 import { existsSync } from "fs";
 import fs from "fs/promises";
-import { q } from "groqd";
 import { format } from "groqfmt-nodejs";
 import path from "path";
 
@@ -17,7 +18,10 @@ import path from "path";
       console.info("sandbox.groq created");
     }
 
-    const query = q("*").filter("_type == 'post'").grab$(postDetailsSelection);
+    const query = makeFindPostBySlugQuery()
+      .grab$(pick(postDetailsSelection, ["title", "slug"]))
+      .slice(0)
+      .nullable();
 
     const queryFormatted = format(query.query);
     await fs.writeFile(queryFile, queryFormatted, "utf-8");

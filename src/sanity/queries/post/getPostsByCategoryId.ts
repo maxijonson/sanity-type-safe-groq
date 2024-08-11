@@ -14,6 +14,6 @@ export const getPostsByCategoryId = <S extends Selection>(
     makeGetPostsByCategoryIdQuery().grab$(selection),
     { categoryId },
     {
-      next: { tags: [`category-id-${categoryId}`] },
+      next: { tags: [`post-categoryId-${categoryId}`] },
     },
   );
